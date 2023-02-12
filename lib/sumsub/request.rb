@@ -3,7 +3,8 @@
 module Sumsub
   class Request
     PRODUCTION_URL = "https://api.sumsub.com"
-    TEST_URL = "https://test-api.sumsub.com"
+    # TEST_URL = "https://test-api.sumsub.com"
+    TEST_URL = PRODUCTION_URL
 
     attr_reader :url, :secret_key, :token
 
@@ -24,7 +25,7 @@ module Sumsub
       headers = build_header(resource, body: applicant.to_json)
       response = HTTP.headers(headers)
                      .post("#{@url}/resources/#{resource}", json: applicant)
-      
+
       parse_response(response)
     end
 
